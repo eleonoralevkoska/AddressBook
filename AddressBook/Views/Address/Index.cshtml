@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AddressBook.DtoModel.Address>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Address" asp-action="Create">Create new address</a>
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>AddressName</th>
+            <th>City</th>
+            <th>Edit</th>
+            <th>Details</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var address in Model)
+        {
+            <tr>
+                <td>@address.AddressName</td>
+                <td>@address.City</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Address" asp-action="Update" asp-route-id="@address.Id">Edit</a></td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Address" asp-action="Details" asp-route-id="@address.Id">Details</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

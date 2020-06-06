@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AddressBook.DtoModel.Contact>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search contact by address: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}  
+    <a class="btn btn-success mt-5" style="margin: 10px" asp-controller="Contact" asp-action="Create">Create new contact</a>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model)
+            {
+                <tr>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.Address.AddressName</td>
+                    <td><a class="btn btn-info" asp-area="" asp-controller="Contact" asp-action="Update" asp-route-id="@contact.Id">Edit</a></td>
+                    <td><a class="btn btn-info" asp-area="" asp-controller="Contact" asp-action="Details" asp-route-id="@contact.Id">Details</a></td>
+                    <td><a class="btn btn-danger" asp-area="" asp-controller="Contact" asp-action="Delete" asp-route-id="@contact.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
